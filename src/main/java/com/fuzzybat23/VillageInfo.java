@@ -3,10 +3,7 @@ package com.fuzzybat23;
 
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityIronGolem;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -119,30 +116,30 @@ public class VillageInfo
         // add text to debug
 
         event.getLeft().add("");
-        if((int)distanceFromVillage > 640)
-            event.getLeft().add("There is a distant Village.");
-        else
-        {
-            if ((int)distanceFromVillage < 160)
-            {
-                event.getLeft().add("There is a " + white + "nearby" + reset + " Village.");
-                event.getLeft().add("Location: (" + white + centerX + reset + ", " + white + centerY + reset + ", " + white + centerZ + reset +"), Radius: " + white + radius);
-                event.getLeft().add("Distance (from center): " + white + (int)distanceFromVillage);
+        if((int)distanceFromVillage > 1000)
+            event.getLeft().add("There are no nearby villages.");
 
-            }
-            else
-            if ((int)distanceFromVillage < 32)
-            {
-                event.getLeft().add("Currently " + white + "inside" + reset + " a Village.");
-                event.getLeft().add("Location: (" + white + centerX + reset + ", " + white + centerY + reset + ", " + white + centerZ + reset + "), Radius: " + white + radius);
-                event.getLeft().add("Distance (from center): " + white + (int) distanceFromVillage);
-                event.getLeft().add("Total number of houses: " + houseColor + numDoors);
-                event.getLeft().add("Total number of villagers: " + white + numVillagers + reset + " (" + ((int) (numDoors * 0.35D)) + ")");
-                event.getLeft().add("Total number of iron golems: " + white + numGolems + reset + " (" + (numVillagers / 10) + ")");
-                event.getLeft().add("Your reputation with the village is: " + repColor + reputation);
-                event.getLeft().add("Villages are horny right now. (" + hornyColor1 + "Yes" + reset + "/" + hornyColor2 + "No" + reset + ")");
-                event.getLeft().add("Currently " + white + (isGolemSpawnArea(player, center) ? "inside" : "outside") + reset + " Iron Golem spawning area.");
-            }
+        if((int)distanceFromVillage > 160 && (int)distanceFromVillage <= 1000)
+            event.getLeft().add("There is a distant village.");
+
+        if ((int)distanceFromVillage > 32 && (int)distanceFromVillage <= 160)
+        {
+            event.getLeft().add("There is a " + white + "nearby" + reset + " village.");
+            event.getLeft().add("Location: (" + white + centerX + reset + ", " + white + centerY + reset + ", " + white + centerZ + reset +"), Radius: " + white + radius);
+            event.getLeft().add("Distance (from center): " + white + (int)distanceFromVillage);
+        }
+
+        if ((int)distanceFromVillage <= 32)
+        {
+            event.getLeft().add("Currently " + white + "inside" + reset + " a Village.");
+            event.getLeft().add("Location: (" + white + centerX + reset + ", " + white + centerY + reset + ", " + white + centerZ + reset + "), Radius: " + white + radius);
+            event.getLeft().add("Distance (from center): " + white + (int) distanceFromVillage);
+            event.getLeft().add("Total number of houses: " + houseColor + numDoors);
+            event.getLeft().add("Total number of villagers: " + white + numVillagers + reset + " (" + ((int) (numDoors * 0.35D)) + ")");
+            event.getLeft().add("Total number of iron golems: " + white + numGolems + reset + " (" + (numVillagers / 10) + ")");
+            event.getLeft().add("Your reputation with the village is: " + repColor + reputation);
+            event.getLeft().add("Villages are horny right now. (" + hornyColor1 + "Yes" + reset + "/" + hornyColor2 + "No" + reset + ")");
+            event.getLeft().add("Currently " + white + (isGolemSpawnArea(player, center) ? "inside" : "outside") + reset + " Iron Golem spawning area.");
         }
     }
 
