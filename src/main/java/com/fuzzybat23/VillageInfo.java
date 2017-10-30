@@ -122,7 +122,7 @@ public class VillageInfo
         if((int)distanceFromVillage > 160 && (int)distanceFromVillage <= 1000)
             event.getLeft().add("There is a distant village.");
 
-        if ((int)distanceFromVillage > 32 && (int)distanceFromVillage <= 160)
+        if ((int)distanceFromVillage > radius && (int)distanceFromVillage <= 160)
         {
             event.getLeft().add("There is a " + white + "nearby" + reset + " village.");
             event.getLeft().add("Location: (" + white + centerX + reset + ", " + white + centerY + reset + ", " + white + centerZ + reset +"), Radius: " + white + radius);
